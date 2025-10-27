@@ -21,20 +21,17 @@ COPY consumer/src ./src
 RUN mvn clean package -DskipTests
 
 # --- STAGE 3: MINIMAL RUNTIME ---
-# OPTIMIZATION: Use the slim JRE-Alpine image for a much smaller final container (Good practice!)
-FROM eclipse-temurin:21-jre-alpine
+# FIX: Swapping to the JRE-Jammy (Debian-based) image
+# This provides the necessary 'bash' shell for the 'wait -n' command in start.sh
+FROM eclipse-temurin:21-jre-jammy
 WORKDIR /services
 
-# CRITICAL FIX: Use '*.jar' wildcard to correctly copy the built artifacts
+# Copy the built artifacts
 COPY --from=app-build /app/target/*.jar ./app.jar
 COPY --from=consumer-build /consumer/target/*.jar ./consumer.jar
 
 # Copy the start script
 COPY start.sh .
-
-# CRITICAL FIX FOR "NOT FOUND" ERROR:
-# Install dos2unix (via apk) and convert line endings from CRLF to LF
-RUN apk add --no-cache dos2unix && dos2unix start.sh
 
 # Make it executable
 RUN chmod +x start.sh
@@ -43,5 +40,6 @@ RUN chmod +x start.sh
 ENV PORT 8080
 EXPOSE 8080
 
-
-CMD ["./start.sh"]
+# FIX: Explicitly execute the script using the full path to /bin/bash.
+# This ensures Bash is used and resolves the "not found" error.
+CMD ["/bin/bash", "./start.sh"]

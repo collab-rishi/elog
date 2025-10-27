@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- Basic project metadata -->
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Inherit default configurations from Spring Boot parent -->
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.4.5</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
+	<!-- Project coordinates -->
+	<groupId>ELogisticsTendering</groupId>
+	<artifactId>tendering</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<!-- Project information -->
+	<name>ELogisticsTendering</name>
+	<description>
+		ELogistics-Tendering is a digital platform designed to streamline the
+		logistics tendering
+		process by connecting Third-Party Logistics (3PL) providers with
+		Logistics Service Providers (LSPs)
+		for efficient transport bidding, tracking, and confirmation.
+	</description>
+
+	<!-- Optional project homepage -->
+	<url />
+
+	<!-- License information (empty, should be filled for open-source projects) -->
+	<licenses>
+		<license />
+	</licenses>
+
+	<!-- Developer information -->
+	<developers>
+		<developer />
+	</developers>
+
+	<!-- Source Control Management details (e.g., Git repository) -->
+	<scm>
+		<connection />
+		<developerConnection />
+		<tag />
+		<url />
+	</scm>
+
+	<!-- Set the Java version used for compilation -->
+	<properties>
+		<java.version>21</java.version>
+	</properties>
+
+	<!-- Project dependencies -->
+	<dependencies>
+
+		<!-- Spring Boot: JPA for database interaction -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!-- Spring Boot: Mail support (JavaMailSender) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		<dependency>
+    <groupId>org.springframework.kafka</groupId>
+    <artifactId>spring-kafka</artifactId>
+</dependency>
+
+
+		<!-- Spring Boot: Validation (Bean Validation API) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!-- Spring Boot: Core Web dependency (REST APIs, Tomcat, etc.) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Spring Boot: Support for SOAP-based web services -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+
+		<!-- Spring Boot: Developer tools for hot reloading and productivity -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<!-- MySQL database connector -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- Spring Boot: Testing support -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.firebase</groupId>
+			<artifactId>firebase-admin</artifactId>
+			<version>9.1.1</version> <!-- Check for latest version -->
+		</dependency>
+
+		<!-- Spring Boot: Logging with Log4j2 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+		</dependency>
+
+		<!-- Twilio SDK for sending SMS and managing communication APIs -->
+		<dependency>
+			<groupId>com.twilio.sdk</groupId>
+			<artifactId>twilio</artifactId>
+			<version>8.1.0</version>
+		</dependency>
+
+	</dependencies>
+
+	<!-- Build plugins configuration -->
+	<build>
+		<plugins>
+			<!-- Plugin to package the application as an executable JAR -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

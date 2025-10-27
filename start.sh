@@ -1,9 +1,10 @@
 #!/bin/bash
 
 # Start the main app
-cd app
-java -jar target/*.jar &
+java -jar /services/app.jar &
 
 # Start the consumer app
-cd ../consumer
-java -jar target/*.jar &
+java -jar /services/consumer.jar &
+
+# Wait for background processes
+wait

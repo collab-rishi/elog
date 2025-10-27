@@ -1,8 +1,8 @@
-# 1: Build the 'app' service
+#Stage 1: Build the 'app' service
 
-#Using a confirmed valid tag for Maven 3.9.6 and JDK 21 (Eclipse Temurin)
+#Using the standard, robust tag for Maven 3.9 (latest) and JDK 21 (Eclipse Temurin)
 
-FROM maven:3.9.6-eclipse-temurin-21-jdk AS app-build
+FROM maven:3.9-eclipse-temurin-21 AS app-build
 WORKDIR /app
 COPY app/pom.xml .
 COPY app/src ./src
@@ -13,7 +13,7 @@ RUN mvn clean package -DskipTests
 
 #Stage 2: Build the 'consumer' service
 
-FROM maven:3.9.6-eclipse-temurin-21-jdk AS consumer-build
+FROM maven:3.9-eclipse-temurin-21 AS consumer-build
 WORKDIR /consumer
 COPY consumer/pom.xml .
 COPY consumer/src ./src
@@ -29,12 +29,12 @@ RUN mvn clean package -DskipTests
 FROM eclipse-temurin:21-jdk
 WORKDIR /services
 
-Copy built jars from the previous stages
+#Copy built jars from the previous stages
 
 COPY --from=app-build /app/target/.jar ./app.jar
 COPY --from=consumer-build /consumer/target/.jar ./consumer.jar
 
-Copy the start script and make it executable
+#Copy the start script and make it executable
 
 COPY start.sh .
 RUN chmod +x start.sh

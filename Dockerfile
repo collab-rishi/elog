@@ -43,5 +43,5 @@ RUN chmod +x start.sh
 ENV PORT 8080
 EXPOSE 8080
 
-# Use the cleaner Exec form entry point
+
 CMD ["./start.sh"]
